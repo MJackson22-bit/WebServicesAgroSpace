@@ -1,7 +1,9 @@
 <?php
-namespace Procedures\DashboardBank;
+
+namespace Procedures\Dashboard;
 use App\Utils\ToResponse;
 use App\Database\Connection;
+
 class DashboardBank
 {
     use ToResponse;
