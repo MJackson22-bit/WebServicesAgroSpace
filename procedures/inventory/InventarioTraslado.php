@@ -4,7 +4,7 @@ namespace Procedures\inventory;
 use App\Utils\ToResponse;
 use App\Database\Connection;
 
-class inventarioOtrosMov
+class InventarioTraslado
 {
     use ToResponse;
 
@@ -20,26 +20,27 @@ class inventarioOtrosMov
         /*$fechaInicial = $_REQUEST['fechaInicial'];
         $fechaFinal = $_REQUEST['fechaFinal'];
         $codEmpresa = $_REQUEST['codEmpresa'];
-        $tipoMov = $_REQUEST['tipoMov'];
-        $nomFamilia = $_REQUEST['nomFamilia'];
-        $nomTipoArt = $_REQUEST['nomTipoArt'];
+        $bodOrigen = $_REQUEST['bodOrigen'];
+        $bodDestino = $_REQUEST['bodDestino'];
+        $tipoAsignar = $_REQUEST['tipoAsignar'];
+        $aplicado = $_REQUEST['aplicado'];
         $tipo = $_REQUEST['tipo'];*/
 
-        $inventarioOtrosMov = $this->connection
+        $inventarioTraslado = $this->connection
             ->parameters([
                 '@FechaInicial' => '2015-12-31 00:00:00',
                 '@FechaFinal' => '2016-01-06 00:00:00',
                 '@CodEmpresa' => '001',
-                '@TipoMov' => '',
-                '@NomFamilia' => '',
-                '@NomTipoArt' => '',
+                '@BodOrigen' => '',
+                '@BodDestino' => '',
+                '@TipoAsignar' => '',
+                '@Aplicado' => '',
                 '@Tipo' => 'InventarioConsumo'
             ])
-            ->exec('dbo.usp_Inventario_OtrosMov')
+            ->exec('dbo.usp_Inventario_Traslado')
             ->fetch();
 
-        $this->response($inventarioOtrosMov);
-        echo $this->toJson();
+        $this->response($inventarioTraslado);
         return $this;
     }
 }

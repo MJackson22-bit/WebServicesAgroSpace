@@ -25,7 +25,7 @@ class InventarioSaldos
                 '@FechaInicial' => '2015-12-31 00:00:00',
                 '@FechaFinal' => '2016-01-06 00:00:00'
             ])
-            ->exec('dbo.usp_Inventario_Consumo')
+            ->exec('dbo.usp_Inventario_Saldos')
             ->fetch();
 
         $this->response($inventarioSaldos);

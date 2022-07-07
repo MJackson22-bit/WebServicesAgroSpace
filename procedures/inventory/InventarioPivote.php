@@ -27,7 +27,7 @@ class InventarioPivote
                 '@FechaFinal' => '2016-01-06 00:00:00',
                 '@Tipo' => 'InventarioConsumo'
             ])
-            ->exec('dbo.usp_Inventario_Consumo')
+            ->exec('dbo.usp_Inventario_Pivote')
             ->fetch();
 
         $this->response($inventarioPivote);
