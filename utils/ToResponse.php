@@ -4,7 +4,7 @@ trait ToResponse
 {
     private mixed $response;
 
-    public function response(string $response): void
+    public function response(mixed $response): void
     {
         $this->response = $response;
     }

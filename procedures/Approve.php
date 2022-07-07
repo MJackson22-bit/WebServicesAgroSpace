@@ -14,10 +14,15 @@ class Approve
         $this->connection = Connection::getInstance();
     }
 
-    function approve(string $query): self
+    function get(): self
     {
         $approve = $this->connection
-            ->fetch($query);
+            ->parameters([
+                'FechaInicial' => '2015-01-01',
+                'FechaFinal' => '2022-01-31',
+            ])
+            ->call('dbo.usp_Compras_AprobarSINO')
+            ->fetch();
 
         $this->response($approve);
         return $this;

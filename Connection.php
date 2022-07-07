@@ -6,7 +6,9 @@ class Connection
 {
     use Singleton;
 
-    private readonly PDO|null $connection;
+    private PDO|null $connection;
+    private PDOStatement|null $query = null;
+    private array $parameters = [];
     private readonly string $host;
     private readonly string $database;
     private readonly string $username;
@@ -21,7 +23,7 @@ class Connection
         $this->connection = $this->connect();
     }
 
-    function connect(): ?PDO
+    private function connect(): ?PDO
     {
         try
         {
@@ -38,16 +40,70 @@ class Connection
 
     function query(string $query): self
     {
-        $this->connection
+        $this->query = $this
+            ->connection
             ->query($query);
 
         return $this;
     }
 
-    function fetch(string $query): array
+    function call(string $procedure): self
     {
-        return $this->connection
-            ->query($query)
-            ->fetchAll(PDO::FETCH_ASSOC);
+        $params = "";
+
+        foreach(array_keys($this->parameters) as $key)
+        {
+            $params .= "@$key = :$key,";
+        }
+
+        $this->query = $this
+            ->connection
+            ->prepare("EXEC $procedure (?, ?, ?, ?, ?, ?)");
+
+        return $this;
+    }
+
+    function parameters(array $parameters): self
+    {
+        $this->parameters = $parameters;
+
+        return $this;
+    }
+
+    function fetch(): array
+    {
+        if($this->query === null)
+        {
+            return [];
+        }
+
+        $this->bind()
+            ->execute();
+
+        return $this->query
+            ->fetchAll();
+    }
+
+    private function bind(): self
+    {
+        foreach ($this->parameters as $key => $value)
+        {
+            $this->query->bindParam(":$key", $value);
+        }
+
+        return $this;
+    }
+
+    private function execute(): self
+    {
+        $this->query
+            ->execute();
+
+        return $this;
+    }
+
+    function close(): void
+    {
+        $this->connection = null;
     }
 }

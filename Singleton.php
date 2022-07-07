@@ -2,7 +2,7 @@
 
 trait Singleton
 {
-    private static mixed $instance;
+    private static mixed $instance = null;
 
     public static function getInstance(): mixed
     {
