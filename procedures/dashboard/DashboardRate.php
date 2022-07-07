@@ -1,8 +1,9 @@
 <?php
+
 namespace Procedures\Dashboard;
 use App\Utils\ToResponse;
 use App\Database\Connection;
-class DashboardInventory
+class DashboardRate
 {
     use ToResponse;
     private Connection $connection;
@@ -15,24 +16,20 @@ class DashboardInventory
     function get(): self
     {
         $type = [
-            "InvxFamilia",
-            "InvxBodega",
-            "InvConsumoxRubro",
-            "InvConsumoxMaquinaria",
-            "InvDistribucionxRubro",
-            "InvDistribucionxTipoMaq",
-            "InvVolumenConsumo",
-            "InvCostoxRubro"
+            "RatiosxCiclos",
+            "RatiosxCiclosDinamico"
         ];
         $i = 0;
         do{
             $approve = $this->connection
                 ->parameters([
-                    '@FechaInicial' => '04-15-2020',
-                    '@FechaFinal' => '07-07-2022',
+                    '@CodArt' => '00085',
+                    '@CodRubro' => '00002',
+                    '@CodAct' => '001',
+                    '@CodSAct' => '0077',
                     '@Tipo' => $type[$i]
                 ])
-                ->exec('dbo.usp_Dashboard_Inventario')
+                ->exec('dbo.usp_Dashboard_Ratios')
                 ->fetch();
             $this->response($approve);
             echo $this->toJson();
