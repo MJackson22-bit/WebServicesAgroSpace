@@ -1,5 +1,9 @@
 <?php
 
+namespace Procedures\inventory;
+use App\Utils\ToResponse;
+use App\Database\Connection;
+
 class inventarioOtrosMov
 {
     use ToResponse;

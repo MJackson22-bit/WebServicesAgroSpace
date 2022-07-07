@@ -4,7 +4,7 @@ namespace Procedures\inventory;
 use App\Utils\ToResponse;
 use App\Database\Connection;
 
-class InventarioPivote
+class InventarioSaldos
 {
     use ToResponse;
 
@@ -18,19 +18,17 @@ class InventarioPivote
     function get(): self
     {
         /*$fechaInicial = $_REQUEST['fechaInicial'];
-        $fechaFinal = $_REQUEST['fechaFinal'];
-        $tipo = $_REQUEST['tipo'];*/
+        $fechaFinal = $_REQUEST['fechaFinal'];*/
 
-        $inventarioPivote = $this->connection
+        $inventarioSaldos = $this->connection
             ->parameters([
                 '@FechaInicial' => '2015-12-31 00:00:00',
-                '@FechaFinal' => '2016-01-06 00:00:00',
-                '@Tipo' => 'InventarioConsumo'
+                '@FechaFinal' => '2016-01-06 00:00:00'
             ])
             ->exec('dbo.usp_Inventario_Consumo')
             ->fetch();
 
-        $this->response($inventarioPivote);
+        $this->response($inventarioSaldos);
         echo $this->toJson();
         return $this;
     }
