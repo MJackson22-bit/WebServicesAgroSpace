@@ -1,10 +1,10 @@
 <?php
 require_once 'vendor/autoload.php';
-use Procedures\Dashboard\DashboardRate;
+use Procedures\Dashboard\DashboardItem;
 
 
 
-$activity = new DashboardRate();
+$activity = new DashboardItem();
 $activity->get();
 
 
