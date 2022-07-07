@@ -26,8 +26,6 @@ class Status
             ->exec('dbo.usp_Compras_Estado')
             ->fetch();
 
-        print_r($status);
-
         $this->response($status);
         return $this;
     }

@@ -26,8 +26,6 @@ class NotApprove
             ->exec('dbo.usp_Compras_NoAprobadas')
             ->fetch();
 
-        print_r($notApprove);
-
         $this->response($notApprove);
         return $this;
     }

@@ -26,8 +26,6 @@ class NotReceived
             ->exec('dbo.usp_Compras_NoRecibidas')
             ->fetch();
 
-        print_r($notReceived);
-
         $this->response($notReceived);
         return $this;
     }
