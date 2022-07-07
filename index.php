@@ -1,8 +1,8 @@
 <?php
 
     include_once 'Connection.php';
-    include_once 'procedures/contability/AccountingReportFormat.php';
+    include_once 'procedures/dashboard/DashboardBank.php';
 
-    $activity = new AccountingReportFormat();
+    $activity = new DashboardBank();
 
     $activity->get();
