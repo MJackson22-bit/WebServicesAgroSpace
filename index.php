@@ -1,8 +1,8 @@
 <?php
 
     include_once 'Connection.php';
-    include_once 'procedures/contability/AccountingResultStatus.php';
+    include_once 'procedures/campo/CampoPivot.php';
 
-    $activity = new AccountingResultStatus();
+    $activity = new CampoPivot();
 
     $activity->get();

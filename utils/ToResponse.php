@@ -11,6 +11,6 @@ trait ToResponse
 
     public function toJson(): string
     {
-        return json_encode($this->response, JSON_PRETTY_PRINT);
+        return json_encode($this->response, JSON_PARTIAL_OUTPUT_ON_ERROR);
     }
 }
