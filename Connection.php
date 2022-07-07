@@ -6,13 +6,13 @@ class Connection
 {
     use Singleton;
 
-    private PDO|null $connection;
-    private PDOStatement|null $query = null;
+    private mixed $connection;
     private array $parameters = [];
     private readonly string $host;
     private readonly string $database;
     private readonly string $username;
     private readonly string $password;
+    private $statement;
 
     private function __construct()
     {
@@ -20,18 +20,18 @@ class Connection
         $this->database = 'CRAC-TIH';
         $this->username = 'sa';
         $this->password = 'Tihouse22*';
-        $this->connection = $this->connect();
+        $this->connect();
     }
 
-    private function connect(): ?PDO
+    private function connect(): void
     {
         try
         {
-            return new PDO(
-                "sqlsrv:server=$this->host;database=$this->database",
-                $this->username,
-                $this->password
-            );
+            $this->connection = sqlsrv_connect($this->host, [
+                'Database' => $this->database,
+                'UID' => $this->username,
+                'PWD' => $this->password
+            ]);
         } catch (Exception $exception)
         {
             die($exception->getMessage());
@@ -40,25 +40,28 @@ class Connection
 
     function query(string $query): self
     {
-        $this->query = $this
-            ->connection
-            ->query($query);
+        $this->statement = sqlsrv_query(
+            $this->connection,
+            $query
+        );
 
         return $this;
     }
 
-    function call(string $procedure): self
+    function exec(string $procedure): self
     {
-        $params = "";
+        $keys = [];
 
-        foreach(array_keys($this->parameters) as $key)
+        foreach($this->parameters as $key => $value)
         {
-            $params .= "@$key = :$key,";
+            $keys[] = "$key = ?";
         }
 
-        $this->query = $this
-            ->connection
-            ->prepare("EXEC $procedure (?, ?, ?, ?, ?, ?)");
+        $this->statement = sqlsrv_query(
+            $this->connection,
+            "EXEC $procedure " . implode(', ', $keys),
+            $this->transform()
+        );
 
         return $this;
     }
@@ -72,38 +75,29 @@ class Connection
 
     function fetch(): array
     {
-        if($this->query === null)
+        $result = [];
+
+        while($row = sqlsrv_fetch_array($this->statement, SQLSRV_FETCH_ASSOC))
         {
-            return [];
+            $result[] = $row;
         }
 
-        $this->bind()
-            ->execute();
-
-        return $this->query
-            ->fetchAll();
-    }
-
-    private function bind(): self
-    {
-        foreach ($this->parameters as $key => $value)
-        {
-            $this->query->bindParam(":$key", $value);
-        }
-
-        return $this;
-    }
-
-    private function execute(): self
-    {
-        $this->query
-            ->execute();
-
-        return $this;
+        return $result;
     }
 
     function close(): void
     {
-        $this->connection = null;
+        sqlsrv_close($this->connection);
+    }
+
+    private function transform(): array
+    {
+        $data = [];
+
+        foreach($this->parameters as $value) {
+            $data[] = [$value, SQLSRV_PARAM_IN];
+        }
+
+        return $data;
     }
 }

@@ -1,12 +1,8 @@
 <?php
 
     include_once 'Connection.php';
-    include_once 'procedures/Approve.php';
+    include_once 'procedures/PivotBuys.php';
 
-    Connection::getInstance();
+    $buys = new PivotBuys();
 
-    $approve = new Approve();
-
-    print_r($approve->get()
-        ->toJson());
-
+    $buys->get();

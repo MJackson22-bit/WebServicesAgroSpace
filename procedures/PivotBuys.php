@@ -3,9 +3,8 @@
 include_once 'Connection.php';
 include_once 'utils/ToResponse.php';
 
-class Approve
+class PivotBuys
 {
-    use ToResponse;
 
     private Connection $connection;
 
@@ -18,13 +17,14 @@ class Approve
     {
         $approve = $this->connection
             ->parameters([
-                'FechaInicial' => '2015-01-01',
-                'FechaFinal' => '2022-01-31',
+                '@FechaInicial' => '2021-08-19 00:00:00',
+                '@FechaFinal' => '2021-11-06 00:00:00',
+                '@Tipo' => 'Compras'
             ])
-            ->call('dbo.usp_Compras_AprobarSINO')
+            ->exec('dbo.usp_Compras_Pivote')
             ->fetch();
 
-        $this->response($approve);
+        echo json_encode($approve, JSON_PRETTY_PRINT);
         return $this;
     }
 }
