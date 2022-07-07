@@ -8,10 +8,10 @@ class Connection
 
     private mixed $connection;
     private array $parameters = [];
-    private readonly string $host;
-    private readonly string $database;
-    private readonly string $username;
-    private readonly string $password;
+    private string $host;
+    private string $database;
+    private string $username;
+    private string $password;
     private $statement;
 
     private function __construct()

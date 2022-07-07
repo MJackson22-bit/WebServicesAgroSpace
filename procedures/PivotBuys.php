@@ -23,8 +23,11 @@ class PivotBuys
             ])
             ->exec('dbo.usp_Compras_Pivote')
             ->fetch();
-
-        echo json_encode($approve, JSON_PRETTY_PRINT);
+        $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
+        if ($json)
+            echo $json;
+        else
+            echo json_last_error_msg();
         return $this;
     }
 }
