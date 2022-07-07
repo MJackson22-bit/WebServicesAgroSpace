@@ -1,8 +1,8 @@
 <?php
 
     include_once 'Connection.php';
-    include_once 'procedures/campo/CampoItemLand.php';
+    include_once 'procedures/campo/CampoDashboard.php';
 
-    $activity = new CampoItemLand();
+    $activity = new CampoDashboard();
 
     $activity->get();
