@@ -16,23 +16,13 @@ class DashboardKPI2
         $type = [
             "ListadoRecursos",
             "ListadoImplementos",
-            "PresupuestovsEjecucion",
-            "PresupuestovsEjecucionxFinca",
-            "CumplimientoTotal",
-            "CumplimientoxFinca",
-            "ActividadPreEjec",
-            "DetalleActividadPreEjec",
-            "ActividadCumplimiento",
-            "SubActividadCumplimiento",
-            "ConsumoPrevsEjec",
-            "ListarAnio",
-            "ListarArticulos",
-            "DetalleConsumoEjec",
-            "TCHFinca",
-            "TCHFincaTotal",
-            "TCHFincaGrafico",
-            "RubroTCHFinca",
-            "DetalleRubroTCHFinca"
+            "ListaLotes",
+            "ListadoSubActividad",
+            "ListadoArticulos",
+            "Riego",
+            "RiegoxMes",
+            "RiegoxConsumo",
+            "RiegoxArticulo"
         ];
         $i = 0;
         do{
@@ -48,7 +38,7 @@ class DashboardKPI2
                     '@FechaFin' => '01-01-2019',
                     '@Tipo' => $type[$i]
                 ])
-                ->exec('dbo.usp_Dashboard_KPI')
+                ->exec('dbo.usp_Dashboard_KPI2')
                 ->fetch();
             $this->response($approve);
             echo $this->toJson();
