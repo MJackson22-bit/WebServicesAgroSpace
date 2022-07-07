@@ -1,8 +1,8 @@
 <?php
 
     include_once 'Connection.php';
-    include_once 'procedures/campo/CampoPivot.php';
+    include_once 'procedures/contability/AccountingReportFormat.php';
 
-    $activity = new CampoPivot();
+    $activity = new AccountingReportFormat();
 
     $activity->get();
