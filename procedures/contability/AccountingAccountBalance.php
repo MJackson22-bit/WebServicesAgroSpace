@@ -3,6 +3,7 @@ include_once 'Connection.php';
 include_once 'utils/ToResponse.php';
 class AccountingAccountBalance
 {
+    use ToResponse;
     private Connection $connection;
 
     function __construct()
@@ -26,12 +27,8 @@ class AccountingAccountBalance
             ])
             ->exec('dbo.usp_Contabilidad_BalanzaCuenta')
             ->fetch();
-        print_r($approve);
-//            $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
-//            if ($json)
-//                echo $json;
-//            else
-//                echo json_last_error_msg();
+        $this->response($approve);
+        echo $this->toJson();
         return $this;
     }
 }

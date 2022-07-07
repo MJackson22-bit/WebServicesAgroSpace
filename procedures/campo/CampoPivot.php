@@ -20,12 +20,6 @@ class CampoPivot
             ])
             ->exec('dbo.usp_Campo_Pivote')
             ->fetch();
-//        print_r($approve);
-        $json = json_encode($approve, JSON_PARTIAL_OUTPUT_ON_ERROR);
-        if ($json)
-            echo $json;
-        else
-            echo json_last_error_msg();
         $this->response($approve);
         echo $this->toJson();
         return $this;

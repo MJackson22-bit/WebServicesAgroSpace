@@ -3,6 +3,7 @@ include_once 'Connection.php';
 include_once 'utils/ToResponse.php';
 class CampoActivityItem
 {
+    use ToResponse;
     private Connection $connection;
 
     function __construct()
@@ -31,11 +32,8 @@ class CampoActivityItem
                 ])
                 ->exec('dbo.usp_Campo_Actividad_Rubro')
                 ->fetch();
-            $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
-            if ($json)
-                echo $json;
-            else
-                echo json_last_error_msg();
+            $this->response($approve);
+            echo $this->toJson();
             $i++;
         }while($i < count($type));
         return $this;

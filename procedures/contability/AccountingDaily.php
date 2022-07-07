@@ -3,6 +3,7 @@ include_once 'Connection.php';
 include_once 'utils/ToResponse.php';
 class AccountingDaily
 {
+    use ToResponse;
     private Connection $connection;
 
     function __construct()
@@ -27,12 +28,8 @@ class AccountingDaily
             ])
             ->exec('dbo.usp_Contabilidad_Diario')
             ->fetch();
-        print_r($approve);
-//            $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
-//            if ($json)
-//                echo $json;
-//            else
-//                echo json_last_error_msg();
+        $this->response($approve);
+        echo $this->toJson();
         return $this;
     }
 }

@@ -27,12 +27,8 @@ class AccountingReportFormat
             ])
             ->exec('dbo.usp_Contabilidad_FormatoReporte')
             ->fetch();
-//        print_r($approve);
-            $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
-            if ($json)
-                echo $json;
-            else
-                echo json_last_error_msg();
+        $this->response($approve);
+        echo $this->toJson();
         return $this;
     }
 }

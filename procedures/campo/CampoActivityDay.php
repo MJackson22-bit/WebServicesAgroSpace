@@ -3,6 +3,7 @@ include_once 'Connection.php';
 include_once 'utils/ToResponse.php';
 class CampoActivityDay
 {
+    use ToResponse;
     private Connection $connection;
 
     function __construct()
@@ -28,11 +29,8 @@ class CampoActivityDay
                 ])
                 ->exec('dbo.usp_Campo_Actividad_Dia')
                 ->fetch();
-            $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
-            if ($json)
-                echo $json;
-            else
-                echo json_last_error_msg();
+            $this->response($approve);
+            echo $this->toJson();
             $i++;
         }while($i < count($type));
         return $this;
