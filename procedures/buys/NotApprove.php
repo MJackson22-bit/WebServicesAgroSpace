@@ -3,8 +3,9 @@
 include_once 'Connection.php';
 include_once 'utils/ToResponse.php';
 
-class PivotBuys
+class NotApprove
 {
+    use ToResponse;
 
     private Connection $connection;
 
@@ -15,19 +16,19 @@ class PivotBuys
 
     function get(): self
     {
-        $approve = $this->connection
+        $notApprove = $this->connection
             ->parameters([
                 '@FechaInicial' => '2021-08-19 00:00:00',
                 '@FechaFinal' => '2021-11-06 00:00:00',
-                '@Tipo' => 'Compras'
+                '@CodCompra' => '010833',
+                '@Tipo' => 'CompraNoAprobxProvArt'
             ])
-            ->exec('dbo.usp_Compras_Pivote')
+            ->exec('dbo.usp_Compras_NoAprobadas')
             ->fetch();
-        $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
-        if ($json)
-            echo $json;
-        else
-            echo json_last_error_msg();
+
+        print_r($notApprove);
+
+        $this->response($notApprove);
         return $this;
     }
 }
