@@ -1,7 +1,7 @@
 <?php
 include_once 'Connection.php';
 include_once 'utils/ToResponse.php';
-class CampoDashboard
+class DashboardCampo
 {
     use ToResponse;
     private Connection $connection;

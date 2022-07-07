@@ -1,8 +1,8 @@
 <?php
 
     include_once 'Connection.php';
-    include_once 'procedures/dashboard/DashboardBank.php';
+    include_once 'procedures/dashboard/DashboardCampo.php';
 
-    $activity = new DashboardBank();
+    $activity = new DashboardCampo();
 
     $activity->get();
