@@ -1,6 +1,9 @@
 <?php
-include_once 'Connection.php';
-include_once 'utils/ToResponse.php';
+
+namespace Procedures\Campo;
+use App\Database\Connection;
+use App\Utils\ToResponse;
+
 class CampoPivot
 {
     use ToResponse;
@@ -20,8 +23,9 @@ class CampoPivot
             ])
             ->exec('dbo.usp_Campo_Pivote')
             ->fetch();
+
         $this->response($approve);
-        echo $this->toJson();
+
         return $this;
     }
 }
