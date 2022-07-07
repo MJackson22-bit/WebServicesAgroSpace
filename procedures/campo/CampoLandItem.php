@@ -26,11 +26,12 @@ class CampoLandItem
                     '@CodCiclo' => '018',
                     '@CodRubro' => '00001',
                     '@CodFinca' => '001',
-                    '@CodLote' => '018-HOR-01-01',
+                    '@CodLote' => '018-HOR-01-02',
                     '@Tipo' => $type[$i]
                 ])
                 ->exec('dbo.usp_Campo_Finca_Lote')
                 ->fetch();
+            //echo print_r($approve);
             $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
             if ($json)
                 echo $json;
