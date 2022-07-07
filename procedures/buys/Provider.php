@@ -26,8 +26,6 @@ class Provider
             ->exec('dbo.usp_Compras_Proveedor')
             ->fetch();
 
-        print_r($provider);
-
         $this->response($provider);
         return $this;
     }

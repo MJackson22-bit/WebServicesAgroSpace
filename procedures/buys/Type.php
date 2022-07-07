@@ -25,8 +25,6 @@ class Type
             ->exec('dbo.usp_Compras_Tipo')
             ->fetch();
 
-        print_r($type);
-
         $this->response($type);
         return $this;
     }
