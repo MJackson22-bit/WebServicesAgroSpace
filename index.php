@@ -1,8 +1,8 @@
 <?php
 
     include_once 'Connection.php';
-    include_once 'procedures/campo/CampoItemActivity.php';
+    include_once 'procedures/campo/CampoItemFile.php';
 
-    $activity = new CampoItemActivity();
+    $activity = new CampoItemFile();
 
     $activity->get();
