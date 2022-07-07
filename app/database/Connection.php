@@ -1,6 +1,7 @@
 <?php
 
-include_once 'Singleton.php';
+namespace App\Database;
+use App\Singleton;
 
 class Connection
 {
@@ -28,11 +29,11 @@ class Connection
         try
         {
             $this->connection = sqlsrv_connect($this->host, [
-                'Database' => $this->database,
+                'database' => $this->database,
                 'UID' => $this->username,
                 'PWD' => $this->password
             ]);
-        } catch (Exception $exception)
+        } catch (\Exception $exception)
         {
             die($exception->getMessage());
         }
