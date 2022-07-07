@@ -1,6 +1,6 @@
 <?php
 
-class inventarioExistenciaBodega
+class inventarioOtrosMov
 {
     use ToResponse;
 
@@ -16,19 +16,25 @@ class inventarioExistenciaBodega
         /*$fechaInicial = $_REQUEST['fechaInicial'];
         $fechaFinal = $_REQUEST['fechaFinal'];
         $codEmpresa = $_REQUEST['codEmpresa'];
+        $tipoMov = $_REQUEST['tipoMov'];
+        $nomFamilia = $_REQUEST['nomFamilia'];
+        $nomTipoArt = $_REQUEST['nomTipoArt'];
         $tipo = $_REQUEST['tipo'];*/
 
-        $inventarioExistenciaBodega = $this->connection
+        $inventarioOtrosMov = $this->connection
             ->parameters([
                 '@FechaInicial' => '2015-12-31 00:00:00',
                 '@FechaFinal' => '2016-01-06 00:00:00',
                 '@CodEmpresa' => '001',
+                '@TipoMov' => '',
+                '@NomFamilia' => '',
+                '@NomTipoArt' => '',
                 '@Tipo' => 'InventarioConsumo'
             ])
-            ->exec('dbo.usp_Inventario_ExistenciaBodega')
+            ->exec('dbo.usp_Inventario_OtrosMov')
             ->fetch();
 
-        $this->response($inventarioExistenciaBodega);
+        $this->response($inventarioOtrosMov);
         return $this;
     }
 }
