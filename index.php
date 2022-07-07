@@ -1,8 +1,8 @@
 <?php
 
     include_once 'Connection.php';
-    include_once 'procedures/PivotBuys.php';
+    include_once 'procedures/campo/CampoActivityDay.php';
 
-    $buys = new PivotBuys();
+    $activity = new CampoActivityDay();
 
-    $buys->get();
+    $activity->get();
