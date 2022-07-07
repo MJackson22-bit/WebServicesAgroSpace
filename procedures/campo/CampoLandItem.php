@@ -3,6 +3,7 @@ include_once 'Connection.php';
 include_once 'utils/ToResponse.php';
 class CampoLandItem
 {
+    use ToResponse;
     private Connection $connection;
 
     function __construct()
@@ -30,12 +31,8 @@ class CampoLandItem
                 ])
                 ->exec('dbo.usp_Campo_Finca_Rubro')
                 ->fetch();
-            //echo print_r($approve);
-            $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
-            if ($json)
-                echo $json;
-            else
-                echo json_last_error_msg();
+            $this->response($approve);
+            echo $this->toJson();
             $i++;
         }while($i < count($type));
         return $this;

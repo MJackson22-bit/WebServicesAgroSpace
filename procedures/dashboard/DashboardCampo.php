@@ -1,8 +1,9 @@
 <?php
 include_once 'Connection.php';
 include_once 'utils/ToResponse.php';
-class CampoDashboard
+class DashboardCampo
 {
+    use ToResponse;
     private Connection $connection;
 
     function __construct()
@@ -43,12 +44,8 @@ class CampoDashboard
                 ])
                 ->exec('dbo.usp_Dashboard_Campo')
                 ->fetch();
-            print_r($approve);
-//            $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
-//            if ($json)
-//                echo $json;
-//            else
-//                echo json_last_error_msg();
+            $this->response($approve);
+            echo $this->toJson();
             $i++;
         }while($i < count($type));
         return $this;
