@@ -21,12 +21,11 @@ class CampoActivityDay
             ])
             ->exec('dbo.usp_Campo_Actividad_Dia')
             ->fetch();
-//        $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
-//        if ($json)
-//            echo $json;
-//        else
-//            echo json_last_error_msg();
-        print_r($approve);
+        $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
+        if ($json)
+            echo $json;
+        else
+            echo json_last_error_msg();
         return $this;
     }
 }
