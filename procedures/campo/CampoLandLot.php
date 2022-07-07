@@ -1,6 +1,9 @@
 <?php
-include_once 'Connection.php';
-include_once 'utils/ToResponse.php';
+
+namespace Procedures\Campo;
+use App\Database\Connection;
+use App\Utils\ToResponse;
+
 class CampoLandLot
 {
     use ToResponse;
@@ -12,7 +15,7 @@ class CampoLandLot
     }
     function get(): self
     {
-        $type = [
+        $types = [
             "CampoFincaLote",
             "CampoFincaLoteCuenta",
             "CampoFincaLoteTop5",
@@ -28,14 +31,15 @@ class CampoLandLot
                     '@CodRubro' => '00001',
                     '@CodFinca' => '001',
                     '@CodLote' => '018-HOR-01-02',
-                    '@Tipo' => $type[$i]
+                    '@Tipo' => $types[$i]
                 ])
                 ->exec('dbo.usp_Campo_Finca_Lote')
                 ->fetch();
+
             $this->response($approve);
-            echo $this->toJson();
+
             $i++;
-        }while($i < count($type));
+        }while($i < count($types));
         return $this;
     }
 }
