@@ -1,8 +1,8 @@
 <?php
 
     include_once 'Connection.php';
-    include_once 'procedures/campo/CampoDashboard.php';
+    include_once 'procedures/contability/AccountingAccountBalance.php';
 
-    $activity = new CampoDashboard();
+    $activity = new AccountingAccountBalance();
 
     $activity->get();
