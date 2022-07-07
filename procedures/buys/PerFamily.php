@@ -26,8 +26,6 @@ class PerFamily
             ->exec('dbo.usp_Compras_PorFamilia')
             ->fetch();
 
-        print_r($perFamily);
-
         $this->response($perFamily);
         return $this;
     }

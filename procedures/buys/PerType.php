@@ -27,8 +27,6 @@ class PerType
             ->exec('dbo.usp_Compras_PorTipo')
             ->fetch();
 
-        print_r($perType);
-
         $this->response($perType);
         return $this;
     }
