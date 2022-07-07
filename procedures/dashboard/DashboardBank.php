@@ -1,6 +1,9 @@
 <?php
-include_once 'Connection.php';
-include_once 'utils/ToResponse.php';
+
+namespace Procedures\Dashboard;
+use App\Utils\ToResponse;
+use App\Database\Connection;
+
 class DashboardBank
 {
     use ToResponse;
