@@ -1,6 +1,9 @@
 <?php
-include_once 'Connection.php';
-include_once 'utils/ToResponse.php';
+
+namespace Procedures\Campo;
+use App\Database\Connection;
+use App\Utils\ToResponse;
+
 class CampoItemFile
 {
     use ToResponse;
@@ -13,7 +16,7 @@ class CampoItemFile
 
     function get(): self
     {
-        $type = [
+        $types = [
             "CampoRubroFicha",
             "CampoRubroFichaTotal",
             "CampoRubroFichaTop3"
@@ -28,14 +31,15 @@ class CampoItemFile
                     '@CodRubro' => '00001',
                     '@CodFinca' => '001',
                     '@CodAct' => '001',
-                    '@Tipo' => $type[$i]
+                    '@Tipo' => $types[$i]
                 ])
                 ->exec('dbo.usp_Campo_Rubro_Ficha')
                 ->fetch();
+
             $this->response($approve);
-            echo $this->toJson();
+
             $i++;
-        }while($i < count($type));
+        }while($i < count($types));
         return $this;
     }
 }
