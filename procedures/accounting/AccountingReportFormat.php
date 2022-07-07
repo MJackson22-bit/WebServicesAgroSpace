@@ -1,6 +1,9 @@
 <?php
-include_once 'Connection.php';
-include_once 'utils/ToResponse.php';
+
+namespace Procedures\Accounting;
+use App\Database\Connection;
+use App\Utils\ToResponse;
+
 class AccountingReportFormat
 {
     use ToResponse;
@@ -13,10 +16,6 @@ class AccountingReportFormat
 
     function get(): self
     {
-        $type = [
-            "Saldo",
-            "SaldoGrupo"
-        ];
         $approve = $this->connection
             ->parameters([
                 '@FechaInicial' => '01-01-2017',
@@ -27,8 +26,9 @@ class AccountingReportFormat
             ])
             ->exec('dbo.usp_Contabilidad_FormatoReporte')
             ->fetch();
+
         $this->response($approve);
-        echo $this->toJson();
+
         return $this;
     }
 }
