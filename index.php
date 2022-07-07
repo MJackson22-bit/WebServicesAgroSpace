@@ -1,8 +1,8 @@
 <?php
 
     include_once 'Connection.php';
-    include_once 'procedures/campo/CampoLandItem.php';
+    include_once 'procedures/campo/CampoPivot.php';
 
-    $activity = new CampoLandItem();
+    $activity = new CampoPivot();
 
     $activity->get();
