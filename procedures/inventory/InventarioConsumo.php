@@ -42,6 +42,7 @@ class InventarioConsumo
             ->fetch();
 
         $this->response($inventarioConsumo);
+        echo $this->toJson();
         return $this;
     }
 }
