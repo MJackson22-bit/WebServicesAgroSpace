@@ -1,10 +1,10 @@
 <?php
 require_once 'vendor/autoload.php';
-use Procedures\Dashboard\DashboardMap;
+use Procedures\Dashboard\DashboardPrevExec;
 
 
 
-$activity = new DashboardMap();
+$activity = new DashboardPrevExec();
 $activity->get();
 
 
