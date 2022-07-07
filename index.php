@@ -1,8 +1,8 @@
 <?php
 
     include_once 'Connection.php';
-    include_once 'procedures/contability/AccountingAccountBalance.php';
+    include_once 'procedures/contability/AccountingGeneralBalance.php';
 
-    $activity = new AccountingAccountBalance();
+    $activity = new AccountingGeneralBalance();
 
     $activity->get();
