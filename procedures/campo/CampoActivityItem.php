@@ -1,9 +1,13 @@
 <?php
-include_once 'Connection.php';
-include_once 'utils/ToResponse.php';
+
+namespace Procedures\Campo;
+use App\Database\Connection;
+use App\Utils\ToResponse;
+
 class CampoActivityItem
 {
     use ToResponse;
+
     private Connection $connection;
 
     function __construct()
@@ -13,13 +17,15 @@ class CampoActivityItem
 
     function get(): self
     {
-        $type = [
+        $types = [
             "CampoActividadRubro",
             "CampoActividadRubroTotal",
             "CampoActividadRubroTop5",
             "CampoActividadRubroArticulo"
         ];
+
         $i = 0;
+
         do{
             $approve = $this->connection
                 ->parameters([
@@ -28,14 +34,16 @@ class CampoActivityItem
                     '@CodCiclo' => '018',
                     '@CodAct' => '018',
                     '@CodRubro' => '001',
-                    '@Tipo' => $type[$i]
+                    '@Tipo' => $types[$i]
                 ])
                 ->exec('dbo.usp_Campo_Actividad_Rubro')
                 ->fetch();
+
             $this->response($approve);
-            echo $this->toJson();
+
             $i++;
-        }while($i < count($type));
+        }while($i < count($types));
+
         return $this;
     }
 }

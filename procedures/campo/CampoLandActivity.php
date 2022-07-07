@@ -1,6 +1,9 @@
 <?php
-include_once 'Connection.php';
-include_once 'utils/ToResponse.php';
+
+namespace Procedures\Campo;
+use App\Database\Connection;
+use App\Utils\ToResponse;
+
 class CampoLandActivity
 {
     use ToResponse;
@@ -13,7 +16,7 @@ class CampoLandActivity
 
     function get(): self
     {
-        $type = [
+        $types = [
             "CampoFincaActividad",
             "CampoFincaActividadTotal",
             "CampoFincaActividadSubAct"
@@ -26,13 +29,14 @@ class CampoLandActivity
                     '@FechaFinal' => '2022-07-07 00:00:00',
                     '@CodCiclo' => '018',
                     '@CodFinca' => '001',
-                    '@Tipo' => $type[$i]
+                    '@Tipo' => $types[$i]
                 ])
                 ->exec('dbo.usp_Campo_Finca_Actividad')
                 ->fetch();
+
             $this->response($approve);
-            echo $this->toJson();
-        }while($i < count($type));
+
+        }while($i < count($types));
         return $this;
     }
 }
