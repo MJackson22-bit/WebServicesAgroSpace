@@ -29,6 +29,7 @@ class inventarioExistenciaBodega
             ->fetch();
 
         $this->response($inventarioExistenciaBodega);
+        echo $this->toJson();
         return $this;
     }
 }
