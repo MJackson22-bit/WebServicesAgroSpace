@@ -1,8 +1,8 @@
 <?php
 
     include_once 'Connection.php';
-    include_once 'procedures/contability/AccountingDaily.php';
+    include_once 'procedures/contability/AccountingResultStatus.php';
 
-    $activity = new AccountingDaily();
+    $activity = new AccountingResultStatus();
 
     $activity->get();
