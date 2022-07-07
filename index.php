@@ -1,10 +1,8 @@
 <?php
 require_once 'vendor/autoload.php';
-use Procedures\Dashboard\DashboardItem;
+use Procedures\Dashboard\DashboardSales;
 
-
-
-$activity = new DashboardItem();
+$activity = new DashboardSales();
 $activity->get();
 
 
