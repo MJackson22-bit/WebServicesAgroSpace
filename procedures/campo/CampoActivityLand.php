@@ -12,22 +12,32 @@ class CampoActivityLand
 
     function get(): self
     {
-        $approve = $this->connection
-            ->parameters([
-                '@FechaInicial' => '2021-01-06 00:00:00',
-                '@FechaFinal' => '2022-07-07 00:00:00',
-                '@CodCiclo' => '018',
-                '@CodAct' => '018',
-                '@CodFinca' => '001',
-                '@Tipo' => 'CampoActividadFinca'
-            ])
-            ->exec('dbo.usp_Campo_Actividad_Finca')
-            ->fetch();
-        $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
-        if ($json)
-            echo $json;
-        else
-            echo json_last_error_msg();
+        $type = [
+            "CampoActividadFinca",
+            "CampoActividadFincaCuenta",
+            "CampoActividadFincaTop5",
+            "CampoActividadFincaArticulo"
+        ];
+        $i = 0;
+        do{
+            $approve = $this->connection
+                ->parameters([
+                    '@FechaInicial' => '2021-01-06 00:00:00',
+                    '@FechaFinal' => '2022-07-07 00:00:00',
+                    '@CodCiclo' => '018',
+                    '@CodAct' => '018',
+                    '@CodFinca' => '001',
+                    '@Tipo' => $type[$i]
+                ])
+                ->exec('dbo.usp_Campo_Actividad_Finca')
+                ->fetch();
+            $json = json_encode($approve, JSON_UNESCAPED_UNICODE);
+            if ($json)
+                echo $json;
+            else
+                echo json_last_error_msg();
+            $i++;
+        }while($i < count($type));
         return $this;
     }
 }
