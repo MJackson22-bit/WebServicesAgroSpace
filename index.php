@@ -1,8 +1,8 @@
 <?php
 
     include_once 'Connection.php';
-    include_once 'procedures/dashboard/DashboardKPI2.php';
+    include_once 'procedures/dashboard/DashboardRise.php';
 
-    $activity = new DashboardKPI2();
+    $activity = new DashboardRise();
 
     $activity->get();
