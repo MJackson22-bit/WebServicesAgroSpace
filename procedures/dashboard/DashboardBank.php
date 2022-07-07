@@ -1,7 +1,7 @@
 <?php
 include_once 'Connection.php';
 include_once 'utils/ToResponse.php';
-class AccountingAccountBalance
+class DashboardBank
 {
     use ToResponse;
     private Connection $connection;
@@ -10,22 +10,15 @@ class AccountingAccountBalance
     {
         $this->connection = Connection::getInstance();
     }
-
     function get(): self
     {
-        $type = [
-            "ContaBalanzaCuenta",
-            "ContaBalanzaCuentaMov"
-        ];
         $approve = $this->connection
             ->parameters([
-                '@FechaInicial' => '01-01-2017 00:00:00',
-                '@FechaFinal' => '01-01-2018 00:00:00',
-                '@CodEmp' => '001',
-                '@Cuenta' => '01-001-001-001-0001',
-                '@Tipo' => "ContaBalanzaCuentaMov"
+                '@FechaInicial' => '01-1-2012 00:00:00',
+                '@FechaFinal' => '01-1-2017 00:00:00',
+                '@Tipo' => 'Disponibilidad'
             ])
-            ->exec('dbo.usp_Contabilidad_BalanzaCuenta')
+            ->exec('dbo.usp_Dashboard_Banco')
             ->fetch();
         $this->response($approve);
         echo $this->toJson();

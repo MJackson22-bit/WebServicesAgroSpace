@@ -1,7 +1,7 @@
 <?php
 include_once 'Connection.php';
 include_once 'utils/ToResponse.php';
-class CampoLandActivity
+class DashboardRise
 {
     use ToResponse;
     private Connection $connection;
@@ -14,24 +14,23 @@ class CampoLandActivity
     function get(): self
     {
         $type = [
-            "CampoFincaActividad",
-            "CampoFincaActividadTotal",
-            "CampoFincaActividadSubAct"
+            "ListadoFinca",
+            "VolumenLluvia"
         ];
         $i = 0;
         do{
             $approve = $this->connection
                 ->parameters([
-                    '@FechaInicial' => '2021-01-01 00:00:00',
-                    '@FechaFinal' => '2022-07-07 00:00:00',
-                    '@CodCiclo' => '018',
-                    '@CodFinca' => '001',
+                    '@FechaInicial' => '01-01-2016',
+                    '@FechaFinal' => '06-01-2016',
+                    '@Finca' => 'HORMIGUERO',
                     '@Tipo' => $type[$i]
                 ])
-                ->exec('dbo.usp_Campo_Finca_Actividad')
+                ->exec('dbo.usp_Dashboard_Lluvia')
                 ->fetch();
             $this->response($approve);
             echo $this->toJson();
+            $i++;
         }while($i < count($type));
         return $this;
     }
