@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 trait Singleton
 {
     private static mixed $instance = null;
