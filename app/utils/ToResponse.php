@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Utils;
+
 trait ToResponse
 {
     private mixed $response;
