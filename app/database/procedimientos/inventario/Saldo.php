@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Database\Procedures\inventory;
+namespace App\Database\Procedimientos\Inventario;
 use App\utilidades\Convertidor;
 use App\Database\Conexion;
 
-class InventarioSaldos
+class Saldo
 {
     use Convertidor;
 
@@ -17,19 +17,15 @@ class InventarioSaldos
 
     function get(): self
     {
-        /*$fechaInicial = $_REQUEST['fechaInicial'];
-        $fechaFinal = $_REQUEST['fechaFinal'];*/
-
-        $inventarioSaldos = $this->connection
-            ->parameters([
+        $resultado = $this->connection
+            ->parametros([
                 '@FechaInicial' => '2015-12-31 00:00:00',
                 '@FechaFinal' => '2016-01-06 00:00:00'
             ])
-            ->exec('dbo.usp_Inventario_Saldos')
-            ->fetch();
+            ->ejecutar('dbo.usp_Inventario_Saldos')
+            ->obtener();
 
-        $this->response($inventarioSaldos);
-        echo $this->toJson();
+        $this->respuesta($resultado);
         return $this;
     }
 }
