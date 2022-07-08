@@ -17,10 +17,10 @@ class Connection
 
     private function __construct()
     {
-        $this->host = '208.109.212.209';
-        $this->database = 'CRAC-TIH';
-        $this->username = 'sa';
-        $this->password = 'Tihouse22*';
+        $this->host = $_ENV['DB_HOST'];
+        $this->database = $_ENV['DB_DATABASE'];
+        $this->username = $_ENV['DB_USERNAME'];
+        $this->password = $_ENV['DB_PASSWORD'];
         $this->connect();
     }
 
