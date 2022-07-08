@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Database\Procedures\contabilidad;
+
 use App\Database\Conexion;
 use App\utilidades\Convertidor;
 
-class AccountingDaily
+class Diario
 {
     use Convertidor;
     private Conexion $connection;
@@ -15,7 +15,7 @@ class AccountingDaily
      */
     function __construct()
     {
-        $this->connection = Conexion::getInstance();
+        $this->connection = Conexion::obtenerInstancia();
     }
 
     /**
@@ -23,20 +23,20 @@ class AccountingDaily
      *
      * @return self La respuesta está siendo devuelta.
      */
-    function get(): self
+    function obtener(): self
     {
-        $approve = $this->connection
-            ->parameters([
+        $resultado = $this->connection
+            ->parametros([
                 '@FechaInicial' => '01-01-2016 00:00:00',
                 '@FechaFinal' => '01-01-2018 00:00:00',
                 '@CodEmp' => '001',
                 '@Asiento' => '0000000148',
                 '@Tipo' => "ContaDiarioDetalle"
             ])
-            ->exec('dbo.usp_Contabilidad_Diario')
-            ->fetch();
+            ->ejecutar('dbo.usp_Contabilidad_Diario')
+            ->obtener();
 
-        $this->response($approve);
+        $this->respuesta($resultado);
 
         return $this;
     }
