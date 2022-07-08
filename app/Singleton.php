@@ -4,7 +4,7 @@ namespace App;
 
 trait Singleton
 {
-    private static mixed $instance = null;
+    private static mixed $instancia = null;
 
     /**
      * > Si la instancia es nula, crea una nueva instancia de la clase y devuélvela. De lo contrario, devolver la instancia
@@ -12,13 +12,13 @@ trait Singleton
      *
      * @return mixed La instancia de la clase.
      */
-    public static function getInstance(): mixed
+    public static function obtenerInstancia(): mixed
     {
-        if (self::$instance === null)
+        if (self::$instancia === null)
         {
-            self::$instance = new self();
+            self::$instancia = new self();
         }
 
-        return self::$instance;
+        return self::$instancia;
     }
 }
