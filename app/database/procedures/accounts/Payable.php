@@ -10,11 +10,20 @@ class Payable
 
     private Connection $connection;
 
+    /**
+     * La función __construct() es una función constructora que crea una nueva instancia de la clase Connection y la asigna
+     * a la propiedad de conexión.
+     */
     function __construct()
     {
         $this->connection = Connection::getInstance();
     }
 
+    /**
+     * > Ejecuta un procedimiento almacenado y devuelve el resultado
+     *
+     * @return self La respuesta está siendo devuelta.
+     */
     function get(): self
     {
         $approve = $this->connection

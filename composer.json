@@ -2,7 +2,8 @@
     "name": "agro/web-services-agro-space",
     "require": {
         "php": "^8.0",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "ext-sqlsrv": "*"
     },
     "autoload": {
         "psr-4": {

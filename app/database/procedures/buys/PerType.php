@@ -10,11 +10,20 @@ class PerType
 
     private Connection $connection;
 
+    /**
+     * La función __construct() es una función constructora que crea una nueva instancia de la clase Connection y la asigna
+     * a la propiedad de conexión.
+     */
     function __construct()
     {
         $this->connection = Connection::getInstance();
     }
 
+    /**
+     * Devuelve una respuesta de la base de datos.
+     *
+     * @return self La consulta devuelve una sola fila con las siguientes columnas:
+     */
     function get(): self
     {
         $perType = $this->connection

@@ -15,6 +15,11 @@ class Status
         $this->connection = Connection::getInstance();
     }
 
+    /**
+     * > Ejecuta un procedimiento almacenado y devuelve el resultado
+     *
+     * @return self La respuesta está siendo devuelta.
+     */
     function get(): self
     {
         $status = $this->connection
