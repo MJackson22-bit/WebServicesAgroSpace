@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Database\Procedures\contabilidad;
+namespace App\Database\Procedimientos\Contabilidad;
 use App\Database\Conexion;
 use App\utilidades\Convertidor;
 
-class AccountingReportFormat
+class FormatoReporte
 {
     use Convertidor;
     private Conexion $connection;
@@ -15,7 +15,7 @@ class AccountingReportFormat
      */
     function __construct()
     {
-        $this->connection = Conexion::getInstance();
+        $this->connection = Conexion::obtenerInstancia();
     }
 
     /**
@@ -23,20 +23,20 @@ class AccountingReportFormat
      *
      * @return self La respuesta está siendo devuelta.
      */
-    function get(): self
+    function obtener(): self
     {
-        $approve = $this->connection
-            ->parameters([
+        $resultado = $this->connection
+            ->parametros([
                 '@FechaInicial' => '01-01-2017',
                 '@FechaFinal' => '01-01-2018',
                 '@CodRpt' => 1,
                 '@Moneda' => 'COR',
                 '@Tipo' => 'Saldo'
             ])
-            ->exec('dbo.usp_Contabilidad_FormatoReporte')
-            ->fetch();
+            ->ejecutar('dbo.usp_Contabilidad_FormatoReporte')
+            ->obtener();
 
-        $this->response($approve);
+        $this->respuesta($resultado);
 
         return $this;
     }

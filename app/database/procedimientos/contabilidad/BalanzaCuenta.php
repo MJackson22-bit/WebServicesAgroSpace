@@ -4,7 +4,7 @@ namespace App\Database\Procedimientos\Contabilidad;
 use App\Database\Conexion;
 use App\Utilidades\Convertidor;
 
-class AccountingAccountBalance
+class BalanzaCuenta
 {
     use Convertidor;
 
@@ -24,7 +24,7 @@ class AccountingAccountBalance
      *
      * @return self La respuesta está siendo devuelta.
      */
-    function get(): self
+    function obtener(): self
     {
         $approve = $this->conexion
             ->parametros([

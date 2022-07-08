@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Database\Procedures\contabilidad;
+namespace App\Database\Procedimientos\Contabilidad;
 use App\Database\Conexion;
 use App\utilidades\Convertidor;
 
-class AccountingResultStatus
+class EstadoResultado
 {
     use Convertidor;
     private Conexion $connection;
@@ -15,7 +15,7 @@ class AccountingResultStatus
      */
     function __construct()
     {
-        $this->connection = Conexion::getInstance();
+        $this->connection = Conexion::obtenerInstancia();
     }
 
     /**
@@ -23,20 +23,20 @@ class AccountingResultStatus
      *
      * @return self La respuesta está siendo devuelta.
      */
-    function get(): self
+    function obtener(): self
     {
-        $approve = $this->connection
-            ->parameters([
+        $resultado = $this->connection
+            ->parametros([
                 '@FechaInicial' => '01-01-2016 00:00:00',
                 '@FechaFinal' => '06-06-2017 00:00:00',
                 '@CodEmp' => '001',
                 '@Cuenta' => '01-001-001-001-0001',
                 '@Tipo' => "ContaEstadoResultado"
             ])
-            ->exec('dbo.usp_Contabilidad_EstadoResultado')
-            ->fetch();
+            ->ejecutar('dbo.usp_Contabilidad_EstadoResultado')
+            ->obtener();
 
-        $this->response($approve);
+        $this->respuesta($resultado);
 
         return $this;
     }
