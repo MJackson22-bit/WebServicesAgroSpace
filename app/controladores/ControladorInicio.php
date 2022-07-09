@@ -6,6 +6,6 @@ class ControladorInicio
 {
     public function index(): void
     {
-        echo require_once 'app/recursos/vistas/inicio.php';
+        echo require_once 'app/recursos/vistas/inicio.twig';
     }
 }
