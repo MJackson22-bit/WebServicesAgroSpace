@@ -12,7 +12,8 @@
             "App\\Enrutador\\": "app/enrutador/",
             "App\\Database\\": "app/database/",
             "App\\Utilidades\\": "app/utilidades/",
-            "App\\Controladores\\": "app/controladores/"
+            "App\\Controladores\\": "app/controladores/",
+            "App\\Configuraciones\\": "app/configuraciones/"
         }
     }
 }
