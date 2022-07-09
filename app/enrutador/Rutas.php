@@ -1,25 +1,34 @@
 <?php
 
 namespace App\Enrutador;
+use App\Singleton;
+use Inhere\Route\Router;
+use Throwable;
 
 class Rutas
 {
+    use Singleton;
+
     private Router $router;
 
-    public function __construct()
+    /**
+     * @throws Throwable
+     */
+    private function __construct()
     {
-        $this->router = new Router(new Peticion());
+        $this->router = new Router();
         $this->rutas();
+        $this->router->dispatch();
     }
 
     private function rutas(): void
     {
         $this->router->get('/', function() {
-            return '<h3>Hola mundo</h3>';
+            echo '<h1>Hola mundo</h1>';
         });
 
-        $this->router->post('/data', function($request) {
-            return json_encode($request->body());
+        $this->router->post('/data', function() {
+            echo json_encode($_POST);
         });
     }
 }
