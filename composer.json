@@ -1,9 +1,9 @@
 {
-    "name": "agro/web-services-agro-space",
+    "name": "agro/agro-space",
     "require": {
         "php": "^8.0",
         "vlucas/phpdotenv": "^5.4",
-        "ext-sqlsrv": "*"
+        "inhere/sroute": "^3.0"
     },
     "autoload": {
         "psr-4": {

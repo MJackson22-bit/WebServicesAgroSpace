@@ -10,10 +10,18 @@ class FincaRubro
 
     private Conexion $conexion;
 
+    /**
+     * Esta función es un constructor de la clase.
+     */
     function __construct()
     {
         $this->conexion = Conexion::obtenerInstancia();
     }
+    /**
+     * Una función que se llama desde una clase que se conecta a una base de datos y ejecuta un procedimiento almacenado.
+     *
+     * @return self El resultado de la consulta.
+     */
     function obtener(): self
     {
         $resultado = $this->conexion
