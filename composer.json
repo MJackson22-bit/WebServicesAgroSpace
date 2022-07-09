@@ -1,7 +1,7 @@
 {
     "name": "agro/agro-space",
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "vlucas/phpdotenv": "^5.4",
         "inhere/sroute": "^3.0"
     },
