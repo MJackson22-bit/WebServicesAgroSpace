@@ -18,7 +18,7 @@ class MotorPlantilla
     {
         extract($args, EXTR_SKIP);
 
-        $archivo = dirname(__DIR__)."/recursos/vistas/$$vista.twig";
+        $archivo = dirname(__DIR__)."/recursos/vistas/$vista.twig";
 
         if(!is_readable($archivo)) {
             throw new  Exception("Archivo no encontrado: $archivo");
@@ -37,7 +37,7 @@ class MotorPlantilla
         static $twig = null;
 
         if ($twig === null) {
-            $cargador = new FilesystemLoader('app\\recursos\\vistas');
+            $cargador = new FilesystemLoader('app/recursos/vistas');
             $twig = new Environment($cargador);
         }
 
