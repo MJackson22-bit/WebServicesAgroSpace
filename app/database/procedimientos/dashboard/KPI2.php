@@ -9,11 +9,19 @@ class KPI2
     use Convertidor;
     private Conexion $connection;
 
+    /**
+     * Crea una nueva instancia de la clase Conexión y la asigna a la propiedad $conexión
+     */
     function __construct()
     {
         $this->connection = Conexion::obtenerInstancia();
     }
 
+    /**
+     * Una función que se conecta a una base de datos y devuelve un resultado.
+     *
+     * @return self El resultado de la consulta.
+     */
     function get(): self
     {
         $resultado = $this->connection

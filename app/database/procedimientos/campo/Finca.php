@@ -10,11 +10,19 @@ class Finca
 
     private Conexion $conexion;
 
+    /**
+     * Esta función es un constructor de la clase.
+     */
     function __construct()
     {
         $this->conexion = Conexion::obtenerInstancia();
     }
 
+    /**
+     * Una función que devuelve un objeto propio.
+     *
+     * @return self El resultado de la consulta.
+     */
     function obtener(): self
     {
         $resultado = $this->conexion
