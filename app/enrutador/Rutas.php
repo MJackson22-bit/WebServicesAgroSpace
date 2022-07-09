@@ -32,9 +32,7 @@ class Rutas
      */
     private function rutas(): void
     {
-        $this->router->get('/', function() {
-            echo '<h1>Hola mundo</h1>';
-        });
+        $this->router->get('/', 'App\Controladores\ControladorInicio@index');
 
         $this->router->post('/data', function() {
             echo json_encode($_POST);

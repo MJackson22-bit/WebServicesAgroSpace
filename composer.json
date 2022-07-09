@@ -10,7 +10,8 @@
             "App\\": "app/",
             "App\\Enrutador\\": "app/enrutador/",
             "App\\Database\\": "app/database/",
-            "App\\Utilidades\\": "app/utilidades/"
+            "App\\Utilidades\\": "app/utilidades/",
+            "App\\Controladores\\": "app/controladores/"
         }
     }
 }
