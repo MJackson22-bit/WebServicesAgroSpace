@@ -1,16 +1,20 @@
 <?php
 
 namespace App\Controladores;
+use App\Configuraciones\MotorPlantilla;
 
 class ControladorInicio
 {
+    private MotorPlantilla $motorPlantilla;
+
     public function __construct()
     {
-
+        $this->motorPlantilla = new MotorPlantilla();
     }
 
     public function index(): void
     {
-        echo require_once 'app/recursos/vistas/inicio.php';
+        $this->motorPlantilla
+            ->renderizarPlantilla('inicio');
     }
 }
