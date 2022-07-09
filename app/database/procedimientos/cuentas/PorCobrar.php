@@ -10,11 +10,19 @@ class PorCobrar
 
     private Conexion $conexion;
 
+    /**
+     * Esta función es un constructor de la clase.
+     */
     function __construct()
     {
         $this->conexion = Conexion::obtenerInstancia();
     }
 
+    /**
+     * Una función que devuelve un objeto propio.
+     *
+     * @return self La respuesta de la consulta.
+     */
     function obtener(): self
     {
         $approve = $this->conexion
